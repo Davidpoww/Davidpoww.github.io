@@ -1,0 +1,77 @@
+/* ===== 1. Tipografías ===== */
+@font-face { font-family: "Sora"; src: url("../fonts/sora-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Sora"; src: url("../fonts/sora-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Sora"; src: url("../fonts/sora-800.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../fonts/inter-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../fonts/inter-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Martian Mono"; src: url("../fonts/martian-mono-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fonts/jetbrains-mono-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+
+/* ===== 2. Variables (paleta y fuentes) ===== */
+:root {
+  --bg: #0F2A20;
+  --term: #0A0F0C;
+  --border: #2C5443;
+  --text: #F4F2EA;
+  --text-2: #B5C9BE;
+  --mint: #8EE3B4;
+  --red: #C62828;
+  --red-light: #FF6B6B;
+  --ascii-shadow: #3E7A5E;
+
+  --f-title: "Sora", system-ui, sans-serif;
+  --f-label: "Martian Mono", ui-monospace, monospace;
+  --f-ascii: "JetBrains Mono", ui-monospace, monospace;
+  --f-body: "Inter", system-ui, sans-serif;
+
+  --max: 72rem;
+}
+
+/* ===== 3. Reset mínimo ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--mint); }
+
+/* ===== 4. Fondo: resplandores + cuadrícula ===== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 85% 0%, rgb(142 227 180 / .14), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgb(198 40 40 / .12), transparent 40%),
+    linear-gradient(rgb(244 242 234 / .03) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgb(244 242 234 / .03) 1px, transparent 1px) 0 0 / 40px 40px;
+}
+
+/* ===== 5. Accesibilidad ===== */
+:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: 1rem; top: -4rem;
+  background: var(--term); color: var(--text);
+  padding: .6rem 1rem; border: 1px solid var(--mint); border-radius: .5rem;
+  z-index: 100;
+}
+.skip-link:focus { top: 1rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
