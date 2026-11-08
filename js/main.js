@@ -157,3 +157,63 @@ function initSkillFilter(filter) {
     });
   });
 }
+
+
+/* ===== Menú: marcar la sección activa ===== */
+const navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
+if (navLinks.length) initScrollSpy(navLinks);
+
+function initScrollSpy(links) {
+  const items = [...links]
+    .map((link) => ({ link, section: document.querySelector(link.getAttribute("href")) }))
+    .filter((item) => item.section);
+
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const line = window.innerHeight * 0.4;
+    const atBottom =
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+
+    let current = null;
+    items.forEach((item) => {
+      if (item.section.getBoundingClientRect().top <= line) current = item;
+    });
+    if (atBottom && items.length) current = items[items.length - 1];
+
+    items.forEach((item) => {
+      if (item === current) item.link.setAttribute("aria-current", "true");
+      else item.link.removeAttribute("aria-current");
+    });
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+
+  update();
+}
+
+/* ===== Al recargar, volver siempre al inicio ===== */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+const navEntry = performance.getEntriesByType("navigation")[0];
+if (navEntry && navEntry.type === "reload") {
+  if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+/* ===== Correo: se monta solo al pulsar ===== */
+const mailBtn = document.querySelector("#mail-btn");
+if (mailBtn) {
+  mailBtn.hidden = false;
+  mailBtn.addEventListener("click", () => {
+    const address = ["davidpow", "it"].join(".") + "@" + ["gmail", "com"].join(".");
+    document.querySelector("#mail-text").textContent = address;
+    window.location.href = "mailto:" + address;
+  });
+}
