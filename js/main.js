@@ -217,3 +217,54 @@ if (mailBtn) {
     window.location.href = "mailto:" + address;
   });
 }
+
+/* ===== Secciones: aparecen con un fundido al entrar ===== */
+if (!reduceMotion && "IntersectionObserver" in window) {
+  const sections = document.querySelectorAll(".section");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+  sections.forEach((section) => {
+    section.classList.add("reveal");
+    observer.observe(section);
+  });
+}
+
+/* ===== Barra de progreso de lectura ===== */
+const progressBar = document.createElement("div");
+progressBar.className = "progress";
+progressBar.setAttribute("aria-hidden", "true");
+document.body.prepend(progressBar);
+
+let progressTicking = false;
+
+function updateProgress() {
+  progressTicking = false;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const ratio = max > 0 ? window.scrollY / max : 0;
+  progressBar.style.transform = `scaleX(${ratio})`;
+}
+
+window.addEventListener("scroll", () => {
+  if (!progressTicking) {
+    progressTicking = true;
+    requestAnimationFrame(updateProgress);
+  }
+}, { passive: true });
+
+updateProgress();
+
+/* ===== Mensaje para quien abra la consola ===== */
+console.log(
+  "%cpow%c/%c\n¿Revisando el código? Buena señal.\nHecha a mano: HTML, CSS y JS, sin frameworks ni rastreadores.\nHablemos → linkedin.com/in/davidpow",
+  "font: 800 28px sans-serif; color: #F4F2EA;",
+  "font: 800 28px sans-serif; color: #FF6B6B;",
+  "font: 13px monospace; color: #8EE3B4; line-height: 1.7;"
+);
