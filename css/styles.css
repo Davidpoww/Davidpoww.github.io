@@ -18,6 +18,7 @@
   --red: #C62828;
   --red-light: #FF6B6B;
   --ascii-shadow: #3E7A5E;
+  --hash: #E5C07B;
 
   --f-title: "Sora", system-ui, sans-serif;
   --f-label: "Martian Mono", ui-monospace, monospace;
@@ -398,3 +399,29 @@ p, li, blockquote, figcaption { text-wrap: pretty; }
 
 .has-cursor,
 .has-cursor * { cursor: none !important; }
+
+
+/* ===== 12. git log ===== */
+.log {
+  list-style: none; margin: 0;
+  padding: 1.5rem 1.75rem;
+  background: var(--term);
+  border: 1px solid var(--border); border-radius: 1rem;
+  font-family: var(--f-label); font-size: .9rem; line-height: 1.6;
+  display: grid; gap: .55rem;
+}
+.log li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1.5ch;
+}
+.log__hash { color: var(--hash); }
+.log__head { color: var(--mint); }
+.log__detail {
+  grid-column: 2;
+  color: var(--text-2); font-size: .85em;
+}
+
+@media (max-width: 600px) {
+  .log { padding: 1.25rem; font-size: .8rem; }
+}
