@@ -124,3 +124,36 @@ function initCursor() {
   }
   follow();
 }
+
+/* ===== Filtro de habilidades ===== */
+const skillFilter = document.querySelector(".filter");
+if (skillFilter) initSkillFilter(skillFilter);
+
+function initSkillFilter(filter) {
+  const buttons = filter.querySelectorAll(".filter__btn");
+  const chips = document.querySelectorAll(".chip");
+  const status = document.querySelector("#skills-status");
+
+  filter.hidden = false;
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const role = btn.dataset.role;
+
+      buttons.forEach((b) => {
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
+
+      let count = 0;
+      chips.forEach((chip) => {
+        const match = role === "todo" || chip.dataset.roles.split(" ").includes(role);
+        chip.classList.toggle("is-dim", !match);
+        if (match) count++;
+      });
+
+      status.textContent = role === "todo"
+        ? "Mostrando todas las habilidades"
+        : `${count} habilidades destacadas para ${btn.textContent}`;
+    });
+  });
+}
