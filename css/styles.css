@@ -319,3 +319,82 @@ p, li, blockquote, figcaption { text-wrap: pretty; }
   .term__ff { grid-template-columns: 1fr; }
   .term__ascii { display: none; }
 }
+
+/* ===== 10. Secciones ===== */
+.section {
+  max-width: var(--max); margin: 0 auto;
+  padding: 4.5rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.section__label {
+  margin: 0 0 .5rem;
+  font-family: var(--f-label); font-size: .8rem; color: var(--mint);
+}
+.section__title {
+  margin: 0 0 2rem;
+  font-family: var(--f-title); font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.15; letter-spacing: -.02em;
+}
+
+/* Bloque git diff */
+.diff {
+  background: var(--term);
+  border: 1px solid var(--border); border-radius: 1rem;
+  padding: 1.5rem 1.75rem;
+  font-family: var(--f-label); font-size: .9rem; line-height: 1.6;
+}
+.diff p { margin: 0 0 .5rem; }
+.diff p:last-child { margin: 0; }
+.diff__line { padding-left: 2ch; text-indent: -2ch; }
+.diff__cmd, .diff__line--keep { color: var(--text-2); }
+.diff__line--del { color: var(--red-light); }
+.diff__line--add { color: var(--mint); }
+.diff del, .diff ins { text-decoration: none; }
+
+/* Cita */
+.quote {
+  margin: 2rem 0 0;
+  padding: .25rem 0 .25rem 1.5rem;
+  border-left: 3px solid var(--red);
+}
+.quote blockquote { margin: 0; }
+.quote p {
+  margin: 0;
+  font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.5;
+  text-indent: -.45em;
+}
+.quote figcaption { margin-top: .5rem; font-size: .9rem; color: var(--text-2); }
+
+/* ===== 11. Cursor personalizado ===== */
+.cursor-ring,
+.cursor-dot {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity .2s, scale .25s ease, border-color .25s, background-color .25s;
+}
+.has-cursor .cursor-ring,
+.has-cursor .cursor-dot { opacity: 1; }
+
+.cursor-ring {
+  width: 2.25rem; height: 2.25rem;
+  margin: -1.125rem 0 0 -1.125rem;
+  border: 1.5px solid var(--mint);
+}
+.cursor-dot {
+  width: .35rem; height: .35rem;
+  margin: -.175rem 0 0 -.175rem;
+  background: var(--mint);
+}
+
+.cursor-ring.is-hover {
+  scale: 1.6;
+  border-color: var(--red-light);
+  background-color: rgb(255 107 107 / .08);
+}
+.cursor-ring.is-hover + .cursor-dot { background: var(--red-light); }
+
+.has-cursor,
+.has-cursor * { cursor: none !important; }

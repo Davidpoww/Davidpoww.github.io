@@ -77,3 +77,50 @@ function colorAscii(pre) {
     pre.append(span);
   }
 }
+
+/* ===== Cursor: aro con retraso + punto ===== */
+const finePointer = window.matchMedia("(pointer: fine)").matches;
+if (finePointer && !reduceMotion) initCursor();
+
+function initCursor() {
+  const ring = document.createElement("div");
+  const dot = document.createElement("div");
+  ring.className = "cursor-ring";
+  dot.className = "cursor-dot";
+  ring.setAttribute("aria-hidden", "true");
+  dot.setAttribute("aria-hidden", "true");
+  document.body.append(ring, dot);
+
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+  let visible = false;
+
+  document.addEventListener("pointermove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.translate = `${mouseX}px ${mouseY}px`;
+    if (!visible) {
+      visible = true;
+      ringX = mouseX;
+      ringY = mouseY;
+      document.body.classList.add("has-cursor");
+    }
+  });
+
+  document.documentElement.addEventListener("mouseleave", () => {
+    visible = false;
+    document.body.classList.remove("has-cursor");
+  });
+
+  document.addEventListener("pointerover", (e) => {
+    ring.classList.toggle("is-hover", Boolean(e.target.closest("a, button")));
+  });
+
+  function follow() {
+    ringX += (mouseX - ringX) * 0.18;
+    ringY += (mouseY - ringY) * 0.18;
+    ring.style.translate = `${ringX}px ${ringY}px`;
+    requestAnimationFrame(follow);
+  }
+  follow();
+}
