@@ -1,6 +1,8 @@
 "use strict";
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const lang = document.documentElement.lang.startsWith("en") ? "en" : "es";
+
 
 /* ===== Terminal fastfetch ===== */
 const term = document.querySelector(".term");
@@ -151,9 +153,15 @@ function initSkillFilter(filter) {
         if (match) count++;
       });
 
-      status.textContent = role === "todo"
-        ? "Mostrando todas las habilidades"
-        : `${count} habilidades destacadas para ${btn.textContent}`;
+      const msg = {
+        es: role === "todo"
+          ? "Mostrando todas las habilidades"
+          : `${count} habilidades destacadas para ${btn.textContent}`,
+        en: role === "todo"
+          ? "Showing all skills"
+          : `${count} skills highlighted for ${btn.textContent}`,
+      };
+      status.textContent = msg[lang];
     });
   });
 }
@@ -262,8 +270,12 @@ window.addEventListener("scroll", () => {
 updateProgress();
 
 /* ===== Mensaje para quien abra la consola ===== */
+const consoleText = {
+  es: "\n¿Revisando el código? Buena señal.\nHecha a mano: HTML, CSS y JS, sin frameworks ni rastreadores.\nHablemos → linkedin.com/in/davidpow",
+  en: "\nReading the source? Good sign.\nHandmade: HTML, CSS and JS, no frameworks or trackers.\nLet's talk → linkedin.com/in/davidpow",
+};
 console.log(
-  "%cpow%c/%c\n¿Revisando el código? Buena señal.\nHecha a mano: HTML, CSS y JS, sin frameworks ni rastreadores.\nHablemos → linkedin.com/in/davidpow",
+  "%cpow%c/%c" + consoleText[lang],
   "font: 800 28px sans-serif; color: #F4F2EA;",
   "font: 800 28px sans-serif; color: #FF6B6B;",
   "font: 13px monospace; color: #8EE3B4; line-height: 1.7;"
