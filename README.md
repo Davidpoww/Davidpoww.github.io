@@ -74,8 +74,8 @@ Las tipografías se distribuyen bajo la SIL Open Font License (ver `fonts/licenc
 
 <div align="center">
 
-**EN** · Personal CV website of a junior IT technician moving into Blue Team / SOC.<br>
-Handmade with HTML, CSS and JavaScript: no frameworks, no cookies, no trackers. Updated as I progress.
+**EN** · Personal CV website of a junior IT technician moving into Blue&nbsp;Team&nbsp;/&nbsp;SOC.<br>
+Handmade with HTML, CSS and JavaScript: no frameworks, no cookies, no&nbsp;trackers. Updated as&nbsp;I&nbsp;progress.
 
 **[davidpoww.github.io/en](https://davidpoww.github.io/en/)** · **[LinkedIn](https://www.linkedin.com/in/davidpow)**
 
