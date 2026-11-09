@@ -4,7 +4,7 @@
 
 **Técnico IT junior → Blue Team / SOC** · Valencia, España
 
-Mi CV personal en formato web, construido desde cero y en mejora constante.
+CV personal en formato web, construido desde cero y en mejora constante.
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-davidpoww.github.io-0F2A20?style=for-the-badge&logo=githubpages&logoColor=8EE3B4&labelColor=0A0F0C)](https://davidpoww.github.io)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-David_Pow-0A66C2?style=for-the-badge)](https://www.linkedin.com/in/davidpow)
@@ -23,7 +23,7 @@ Mi CV personal en formato web, construido desde cero y en mejora constante.
 
 Técnico IT junior con seis meses en un entorno de producción: Active Directory, GPO, Microsoft 365, copias de seguridad con Veeam, ticketing con Odoo y soporte a usuarios. Curso el Máster en Ciberseguridad y Hacking Ético y busco mi primer puesto en **SOC / Blue Team**, **soporte IT** o **administración de sistemas**.
 
-Esta web crece conmigo: cada laboratorio, certificación o proyecto nuevo termina aquí.
+**Cada laboratorio, certificación o proyecto nuevo termina aquí.**
 
 ## Cómo está hecha
 
