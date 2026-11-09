@@ -1,0 +1,4 @@
+Contact: https://davidpoww.github.io/#contacto
+Expires: 2027-11-08T23:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://davidpoww.github.io/.well-known/security.txt
